@@ -3,8 +3,8 @@ def home() :
     print("1. Daftar Kontak")
     print("2. Tambah Kontak")
     print("3. Keluar")
-    pilih = int(input("Pilih nomor menu : "))
-    return pilih
+    milih = int(input("Pilih nomor menu : "))
+    return milih
 
 def daftar(kontak1,kontak2):
     print("\nDaftar Kontak : ")
