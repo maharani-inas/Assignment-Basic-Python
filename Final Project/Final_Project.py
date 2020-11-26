@@ -34,54 +34,35 @@ for i in range(length):
     
     message = MIMEMultipart()
     message['From'] = sender_address
-    message['To'] =  reciver_mail             #  Pass Reciver Mail Address
-    message['Subject'] =  'Mail using python'       #The subject line
+    message['To'] =  reciver_mail             
+    message['Subject'] =  'Basic Python Final Project'      
      
 
-    mail_content = '''Hello,
-    This is a simple mail. There is file attachments in the mail, The mail is sent using Python SMTP library.
+    mail_content = '''Hallo,
+    This is a simple mail. The mail is sent using Python SMTP library.
+    You can change this message for your purpose.
     Thank You'''
 
     
-    #The body and the attachments for the mail
     message.attach(MIMEText(mail_content, 'plain'))
-    #Create SMTP session for sending the mail
-    # open the file to be sent  
-    filename = "UTILITAS AIR.pdf"                                                    #str(input('Enter File Name With Extension To Attchment :- '))
-
-    # Open PDF file in binary mode
-    # The file is in the directory same as where you run your Python script code from 
+    
+    filename = "UTILITAS AIR.pdf"                                                 
     with open("C:\\Users\\Maharani\\Documents\\Assignment Basic Python\\Final Project\\UTILITAS AIR.pdf", "rb") as attachment:
         # MIME attachment is a binary file for that content type "application/octet-stream" is used
         part = MIMEBase("application", "octet-stream")
         part.set_payload(attachment.read())
     # encode into base64 
     encoders.encode_base64(part) 
-
     part.add_header('Content-Disposition', "attachment; filename= %s" % filename) 
-
     # attach the instance 'part' to instance 'message' 
     message.attach(part) 
 
     filename1="ef.jpg"
     with open("C:\\Users\\Maharani\\Documents\\Assignment Basic Python\\Final Project\\ef.jpg", "rb") as attachment1:
-        # MIME attachment is a binary file for that content type "application/octet-stream" is used
         part1 = MIMEImage(attachment1.read())
-        #part1.set_payload(attachment1.read())
-    # encode into base64 
-    #encoders.encode_base64(part1) 
-
     part1.add_header('Content-Disposition', "attachment1; filename= %s" % filename1)
     attachment1.close()
-
-    # attach the instance 'part' to instance 'message' 
     message.attach(part1) 
-
-
-
-
-
-
 
     s = smtplib.SMTP('smtp.gmail.com', 587) 
     s.starttls() 
